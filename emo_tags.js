@@ -67,25 +67,25 @@ var emoTags = {
     , happyFor: {
         type: 'event_other_desire'
       , keyWords: [
-          'other', 'desire', 'self', 'auxiliary', 'pos'
+          'other', 'desire', 'self', 'auxiliary', 'pos', 'happyFor'
         ]
       }
     , resentment: {
         type: 'event_other_desire'
       , keyWords: [
-          'other', 'desire', 'self', 'auxiliary', 'neg'
+          'other', 'desire', 'self', 'auxiliary', 'neg', 'resentment'
         ]
       }
     , gloating: {
         type: 'event_other_undesire'
       , keyWords: [
-          'other', 'undesire', 'self', 'pos'
+          'other', 'undesire', 'self', 'gloating', 'pos'
         ]
       }
     , pity: {
         type: 'event_other_undesire'
       , keyWords: [
-          'other', 'undesire', 'self', 'neg'
+          'other', 'undesire', 'self', 'pity', 'neg'
         ]
       }
     , pride: {
@@ -123,47 +123,6 @@ var emoTags = {
   , self: self
   , other: other
 
-  , event_other: {
-      auxiliary: [
-        '为', '祝'
-      ]
-    , other: other.concat([
-        ''
-      ])
-    , desire: [
-        '成绩.*(?:不错|好)', '终于', '生日', '学习', '美'
-      , '幸福', '发大?财', '生活', '祝福', '爱你'
-      , '出去玩', '满足', '', '', ''
-      ]
-    , undesire: [
-        '堵', '停电', '倒', '湿透', '好?可怜'
-      , '就算了.*还', '衰', '', '', ''
-      ]
-    , self: self.concat([
-        '', '', '', '', ''
-      , '', '', '', '', ''
-      ])
-    , pos: [
-        '', '', '', '配合', '祝福'
-      , '窃喜', '', '', '', ''
-      ]
-    , neg: [
-        '', '抓狂', '疯', '', ''
-      , '讨厌', '', '', '', ''
-      ]
-    , resentment: [
-        '嫉妒恨?', '眼红', '', '刺激', '不平衡'
-      , '', '', '', '', ''
-      ]
-    , gloating: [
-        '窃喜', '幸灾乐祸'
-      , ''
-      ]
-    , pity: [
-        '同情', '遗憾'
-      , ''
-      ]
-    }
   , event_other_desire: {
       auxiliary: [
         '为', '祝'
@@ -183,6 +142,10 @@ var emoTags = {
     , happyFor: [
         '祝福',
       ]
+    , resentment: [
+        '嫉妒恨?', '眼红', '', '刺激', '不平衡'
+      , '', '', '', '', ''
+      ]
     , pos: [
         '', '', '', '配合', '祝福'
       , '窃喜', '', '', '', ''
@@ -190,10 +153,6 @@ var emoTags = {
     , neg: [
         '', '抓狂', '疯', '', ''
       , '讨厌', '', '', '', ''
-      ]
-    , resentment: [
-        '嫉妒恨?', '眼红', '', '刺激', '不平衡'
-      , '', '', '', '', ''
       ]
     }
   , event_other_undesire: {
@@ -208,14 +167,6 @@ var emoTags = {
         '', '', '', '', ''
       , '', '', '', '', ''
       ])
-    , pos: [
-        '', '', '', '配合', '祝福'
-      , '窃喜', '', '', '', ''
-      ]
-    , neg: [
-        '', '抓狂', '疯', '', ''
-      , '讨厌', '', '', '', ''
-      ]
     , gloating: [
         '窃喜', '幸灾乐祸'
       , ''
@@ -223,6 +174,14 @@ var emoTags = {
     , pity: [
         '同情', '遗憾'
       , ''
+      ]
+    , pos: [
+        '', '', '', '配合', '祝福'
+      , '窃喜', '', '', '', ''
+      ]
+    , neg: [
+        '', '抓狂', '疯', '', ''
+      , '讨厌', '', '', '', ''
       ]
     }
   , event_self_prospect: {
