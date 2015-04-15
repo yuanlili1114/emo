@@ -1,2 +1,3 @@
-# emo
-emo tags
+# EmoTags
+
+OCC-base emotions key tags.
