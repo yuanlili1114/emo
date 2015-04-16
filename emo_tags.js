@@ -1,8 +1,8 @@
-var postive = [
+var positive = [
       '美妙', '幸福', '高兴', '开心', ''
     , '', '', '', '', ''
     ]
-  , negtive = [
+  , negative = [
       '可怜', '抓狂', '委屈', '汗', '悲催'
     , '生病', '不爽', '悲伤', '怒骂', '抓狂'
     , '泪', '难受', '无聊', '衰', '伤心'
@@ -18,14 +18,20 @@ var postive = [
   , no = [
       '不是?', '没有?'
     ]
-  , praise = [
-      '善良', '优秀', '聚精会神', '', ''
-    , '', '', '', '', ''
+  , praiseworthy = [
+      '善良?', '优秀', '聚精会神', '热心', '细心'
+    , '坚持', '乐善好施', '助人为乐', '仁至义尽', '慈悲'
+    , '仁义', '有爱心', '菩萨心肠', '', ''
     ]
-  , blame = [
+  , blameworthy = [
       '傻', '猪头', '不爱惜自己', '无耻', '鄙视'
     , '不守信用', '性格差', '可恨', '2(?:B|逼)', '傻(?:逼|叉|x)'
-    , '垃圾', '混蛋', '', '', ''
+    , '垃圾', '混蛋', '拖后腿', '碍手碍脚', '脾气.?大'
+    , '(这么|如此)笨的', '不自量力', '懦弱', '无动于衷'
+    , '自(?:负|居|夸|大|满|以为是|命不凡|不量力|我感觉良好)'
+    , '得意忘形', '有恃无恐', '忘乎所以', '洋洋自得', '高傲'
+    , '翘尾巴', '粗心', '疏忽', '马大哈', '毛手毛脚'
+    , '没(?:头脑|脑子)', '', '', '', ''
     ]
   , self = [
       '我们?', '俺', '偶', '我?自己', '在下'
@@ -35,7 +41,9 @@ var postive = [
       '弟弟', '妞', '(?:你|妳)们?', '亲爱的', 'UserName'
     , '(?:她|他)们?', '老公', '小家伙', '对方', '人物'
     , '先生', '丈夫', '小家伙', '对方', '父亲'
-    , '我家宝宝', '别人', '', '', ''
+    , '我家宝宝', '别人', '同事', '侠', '英雄'
+    , '警(?:察|官)', '人', '白衣天使', '老师', '明星'
+    , '志愿者', '领导', '', '', ''
     ]
 
 var emoTags = {
@@ -43,83 +51,83 @@ var emoTags = {
       hope: {
         type: 'event_self_prospect'
       , keyWords: [
-          'self', 'prospect', 'hope', 'pos'
+          'self', 'prospect', 'hope', 'positive'
         ]
       }
     , fear: {
         type: 'event_self_prospect'
       , keyWords: [
-          'self', 'prospect', 'fear', 'neg'
+          'self', 'prospect', 'fear', 'negative'
         ]
       }
     , joy: {
         type: 'event_self_non_prospect'
       , keyWords: [
-          'self', 'pos'
+          'self', 'positive'
         ]
       }
     , distress: {
         type: 'event_self_non_prospect'
       , keyWords: [
-          'self', 'neg'
+          'self', 'negative'
         ]
       }
     , happyFor: {
         type: 'event_other_desire'
       , keyWords: [
-          'other', 'desire', 'self', 'auxiliary', 'pos', 'happyFor'
+          'other', 'desire', 'self', 'auxiliary', 'positive', 'happyFor'
         ]
       }
     , resentment: {
         type: 'event_other_desire'
       , keyWords: [
-          'other', 'desire', 'self', 'auxiliary', 'neg', 'resentment'
+          'other', 'desire', 'self', 'auxiliary', 'negative', 'resentment'
         ]
       }
     , gloating: {
         type: 'event_other_undesire'
       , keyWords: [
-          'other', 'undesire', 'self', 'gloating', 'pos'
+          'other', 'undesire', 'self', 'gloating', 'positive'
         ]
       }
     , pity: {
         type: 'event_other_undesire'
       , keyWords: [
-          'other', 'undesire', 'self', 'pity', 'neg'
+          'other', 'undesire', 'self', 'pity', 'negative'
         ]
       }
     , pride: {
         type: 'action_self'
       , keyWords: [
-          'self', 'praiseworthy', 'pos'
+          'self', 'praiseworthy', 'positive'
         ]
       }
     , shame: {
         type: 'action_self'
       , keyWords: [
-          'self', 'blameworthy', 'neg'
+          'self', 'blameworthy', 'negative'
         ]
       }
     , admiration: {
         type: 'action_other'
       , keyWords: [
-          'other', 'praise', 'self', 'pos'
+          'other', 'praiseworthy', 'self', 'admiration'
         ]
       }
     , reproach: {
         type: 'action_other'
       , keyWords: [
-          'other', 'blame', 'self', 'neg'
+          'other', 'blameworthy', 'self', 'reproach'
         ]
       }
     }
 
-  , postive: postive
-  , negtive: negtive
+  , positive: positive
+  , negative: negative
   , yes: yes
   , no: no
-  , praise: praise
-  , blame: blame
+  , praiseworthy: praiseworthy
+  , blameworthy: blameworthy
   , self: self
   , other: other
 
@@ -131,7 +139,7 @@ var emoTags = {
         ''
       ])
     , desire: [
-        '成绩.*(?:不错|好)', '终于', '生日', '学习', '美'
+        '成绩.*?(?:不错|好)', '终于', '生日', '学习', '美'
       , '幸福', '发大?财', '生活', '', '爱你'
       , '出去玩', '满足', '', '', ''
       ]
@@ -146,11 +154,11 @@ var emoTags = {
         '嫉妒恨?', '眼红', '', '刺激', '不平衡'
       , '', '', '', '', ''
       ]
-    , pos: [
+    , positive: [
         '', '', '', '配合', '祝福'
       , '窃喜', '', '', '', ''
       ]
-    , neg: [
+    , negative: [
         '', '抓狂', '疯', '', ''
       , '讨厌', '', '', '', ''
       ]
@@ -161,7 +169,7 @@ var emoTags = {
       ])
     , undesire: [
         '堵', '停电', '不幸', '湿透', '好?可怜'
-      , '就算了.*还', '衰', '灾害', '小?病', '出院'
+      , '就算了.*?还', '衰', '灾害', '小?病', '出院'
       ]
     , self: self.concat([
         '', '', '', '', ''
@@ -175,11 +183,11 @@ var emoTags = {
         '同情', '遗憾'
       , ''
       ]
-    , pos: [
+    , positive: [
         '', '', '', '配合', '祝福'
       , '窃喜', '', '', '', ''
       ]
-    , neg: [
+    , negative: [
         '', '抓狂', '疯', '', ''
       , '讨厌', '', '', '', ''
       ]
@@ -194,30 +202,30 @@ var emoTags = {
       , '如果', '以后', '每天', '永远', '等着'
       , '再找', '一?想到', '如果', '计划', '正好一下午'
       , '晚上要', '(?:不知道|要)什么时候', '怎样才能', '梦到', '一辈子'
-      , '总会', '今天晚上', '等一下', '还有.+多年', ''
-      , '要去', '', '想象着', '未来', '终有一天'
-      , '以后', '', '', '', ''
+      , '总会', '今天晚上', '等一下', '还有.+多年', '终有一天'
+      , '要去', '以后', '未来', '', ''
+      , '', '', '', '', ''
       ]
     , hope: [
         '希望', '期待', '难得', '邀请', '走好'
       , '好想', '祈祷', '要下班', '等.+回来', '相信会'
       , '才会很?幸福', '就?这么一直', '且?行且珍惜', '和你永远在一起', '肯定会?很'
       , '约定', '又可以', '说好', '只想', '等我'
-      , '解放', '一起旅游', '心愿', '', ''
+      , '解放', '一起旅游', '心愿', '想象着', ''
       ]
     , fear: [
         '不想', '害?怕', '想想?也?觉得好?可?怕', '睡不成', '到啥时候'
       , '就要起床', '就这么', '(?:处理|做)不完的', '现在才', '丢不起这?人'
       , '没时间准备', '纠结', '不要再', '又舍不得', '遇到.?.?人渣'
       ]
-    , pos: [
+    , positive: [
         '睡', '见到', '开心', '继续', '去找'
-      , '(?:终于)?可以回.*了', '迎接', '一起', '温馨', '幸福'
+      , '(?:终于)?可以回.*?了', '迎接', '一起', '温馨', '幸福'
       , '快乐', '假期', '周末', '游', '见面'
       , '喔', '走起', '玩', '聚', '开森'
       , '', '', '', '', ''
       ]
-    , neg: [
+    , negative: [
         '周一', '(?:好|闷热)', '高温', '停电', '没电'
       , '形如陌', '', '', '', ''
       ]
@@ -226,8 +234,8 @@ var emoTags = {
       self: self.concat([
         ''
       ])
-    , pos: postive
-    , neg: negtive
+    , positive: positive
+    , negative: negative
   }
   , action_self: {
       self: self.concat([
@@ -235,21 +243,25 @@ var emoTags = {
       ])
     , praiseworthy: [
         '有始有终', '成果', '做彻底', '佩服', '淡定'
-      , '好乖', '万千宠爱(?:与|于)一身', '会一直', '', ''
+      , '好乖', '万千宠爱(?:与|于)一身', '会一直', '成就感', ''
       ]
-    , blameworthy: blame.concat([
+    , blameworthy: blameworthy.concat([
         '没有?胆', '(?:令|让)人讨厌', '祸头子', '多吃', '吃胖'
       , '玩', '完虐', '面壁', '思过', '道歉'
-      , '不该', '汗', '(?:给|被).*骂', '连.*都?不如', '还不如'
+      , '不该', '汗', '(?:给|被).*?骂', '连.*?都?不如', '还不如'
       , '没.成', '闹哪样', '死的心都有了', '脆弱', '.点才睡'
       , '迟到', '(?:恐怖|吓人)了', '心疼', '偏激', '发泄'
       , '没变?强大', '多依赖人啊', '宅死', '一觉.?到了?', '吃了?很多'
       , '对不起', '汗', '都做了些什么', '太相信自己', '就不应该'
       ])
-    , pos: [
+    , pride: [
+        '自豪', '佩服自己', '引以为(?:豪|傲)', '骄傲', ''
+      , '', '', '', '', ''
+      ]
+    , positive: [
         '嘻嘻', '舒服'
       ]
-    , neg: [
+    , negative: [
         '烦', '抓狂', '无语', '想(?:死|屎)', ''
       ]
     }
@@ -257,14 +269,30 @@ var emoTags = {
       other: other.concat([
         '', '', '', '', ''
       ])
-    , praiseworthy: praise.concat([
+    , praiseworthy: praiseworthy.concat([
         '爱我', '全心付出', '教我..?多', '超?有魅力', '太帅了'
-      , '', '', '', '', ''
+      , '热情', '不(?:普通|一般|平常)', '(?:光荣|英雄)事迹', '在一线', '牺牲'
+      , '舍身', '', '', '', ''
       ])
-    , blameworthy: blame.concat([
-        '脾气.?大', '装大方', '(这么|如此)笨的', '你们?自己?都没做到'
-      , '', '', '', '', ''
+    , admiration: [
+        '爱戴', '称赞', '称道', '敬佩', '佩服'
+      , '肃然起敬', '心悦诚服', '五体投地', '令人叹服'
+      ]
+    , blameworthy: blameworthy.concat([
+        '装大方', '千夫所指', '你们?自己?都没做到', '嘴脸', '惟我独尊'
+      , '作威作福', '煞有介事', '不可一世', '傲慢', '骄慢'
+      , '盛气凌人', '呼幺喝六', '老气横秋', '倚老卖老', '恃才傲物'
+      , '颐指气使', '居功自傲', '妄自尊大', '神气', '锋芒毕露'
+      , '大言不惭', '出言不逊', '耀武扬威', '趾高气扬', '神气活现'
+      , '目中无人', '居功自恃', '唯我独尊', '狂傲', '目空一切'
+      , '旁若无人', '置之不理', '(?:视若|熟视)无睹', '视而不见', '充耳不闻'
+      , '漠不关心', '不闻不问', '坐视不管', '', ''
       ])
+    , reproach: [
+        '(?:看|瞧)不起', '鄙(?:视|夷|弃)', '唾弃', '嗤之以鼻', '讨厌'
+      , '不(?:屑|齿)', '可(?:恨|憎|鄙|恶)', '令人作呕', '碍眼', '怒骂'
+      , '', '', '', '', ''
+      ]
     }
   , obj: {
       obj: [
@@ -275,7 +303,7 @@ var emoTags = {
       , '太棒了?', '', '', '', ''
       ]
     , hate: [
-        '对.*印象.*跌到谷底'
+        '对.*?印象.*?跌到谷底'
       , '太(?:渣|次|坏|破|难用)', '', '', '', ''
       ]
     }
