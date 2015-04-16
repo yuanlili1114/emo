@@ -99,13 +99,13 @@ var emoTags = {
     , pride: {
         type: 'action_self'
       , keyWords: [
-          'self', 'praiseworthy', 'positive'
+          'self', 'praiseworthy', 'pride', 'positive'
         ]
       }
     , shame: {
         type: 'action_self'
       , keyWords: [
-          'self', 'blameworthy', 'negative'
+          'self', 'blameworthy', 'shame', 'negative'
         ]
       }
     , admiration: {
@@ -257,6 +257,9 @@ var emoTags = {
     , pride: [
         '自豪', '佩服自己', '引以为(?:豪|傲)', '骄傲', ''
       , '', '', '', '', ''
+      ]
+    , shame: [
+        '佩服', '', '', '', ''
       ]
     , positive: [
         '嘻嘻', '舒服'
